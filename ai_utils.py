@@ -9,7 +9,7 @@ load_dotenv()
 api_key = os.getenv("GROQ_API_KEY")
 
 if not api_key:
-    raise ValueError("⚠️ Missing GROQ_API_KEY in .env file")
+    raise ValueError("Missing GROQ_API_KEY in .env file")
 
 # Initialize Groq client
 client = Groq(api_key=api_key)
@@ -17,7 +17,7 @@ client = Groq(api_key=api_key)
 def generate_summary(text: str) -> str:
     """Generate a summary for the given text"""
     response = client.chat.completions.create(
-        model="llama-3.1-8b-instant",  # ✅ latest stable Groq model
+        model="llama-3.1-8b-instant",  # latest stable Groq model
         messages=[{"role": "user", "content": f"Summarize this:\n\n{text}"}],
     )
     return response.choices[0].message.content
